@@ -44,6 +44,11 @@ def encode_response(ready_socket, errorNum, errorType):
 	print(header + body + '\r\n\r\n')
 
 
+def check_POST(ready_socket):
+	json = clients[ready_socket]
+	prt = json['push']
+	print(prt)
+	print('FOUND PUSH INFO')
 
 
 while True:
@@ -70,4 +75,5 @@ while True:
 					print(request)
 					# update partial http request
 					clients[ready_socket] = partial_request + request
-					encode_response(ready_socket, 204, 'No Content')
+					check_POST(ready_socket)
+					encode_response(ready_socket, 200, 'OK')
