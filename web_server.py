@@ -38,14 +38,14 @@ if __name__ == "__main__":
 
 def encode_response(ready_socket, errorNum, errorType):
 	header = 'HTTP/1.1 %d %s \r\nContent-Type: text/html\n' % (errorNum, errorType)
-	body = ''
+	body = 'payload received'
 	ready_socket.send((header + body + '\r\n\r\n').encode())
 	ready_socket.close()
 	del clients[ready_socket]
 	print(header + body + '\r\n\r\n')
 
 
-def check_POST(ready_socket):
+def read_POST(ready_socket):
 	data = clients[ready_socket]
 
 	header = data.split('\r\n\r\n')[0]
@@ -90,5 +90,5 @@ while True:
 					# print(request)
 					# update partial http request
 					clients[ready_socket] = partial_request + request
-					check_POST(ready_socket)
+					read_POST(ready_socket)
 					encode_response(ready_socket, 200, 'OK')
