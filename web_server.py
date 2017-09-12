@@ -45,10 +45,10 @@ def encode_response(ready_socket, errorNum, errorType):
 
 
 def check_POST(ready_socket):
+	print('inside check')
 	json = clients[ready_socket]
-	prt = json['push']
-	print(prt)
-	print('FOUND PUSH INFO')
+	print(json)
+	print('FOUND push INFO')
 
 
 while True:
@@ -71,8 +71,9 @@ while True:
 					encode_response(ready_socket, 400, 'Bad Request')
 					print('Forcing shutdown')
 				else:
+					print(data)
 					request = data.decode("utf-8")
-					print(request)
+					# print(request)
 					# update partial http request
 					clients[ready_socket] = partial_request + request
 					check_POST(ready_socket)
