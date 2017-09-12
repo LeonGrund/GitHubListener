@@ -58,11 +58,11 @@ def check_POST(ready_socket):
 
 	branch = dic['repository']['default_branch']
 
-	print('========================')
+	print('=======================')
 	print(eventName)
 	print(repoName)
 	print(branch)
-	print('========================')
+	print('=======================')
 
 
 while True:
