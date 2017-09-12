@@ -3,6 +3,7 @@ import sys
 import os
 import signal
 import select
+import json
 
 serversocket = None
 def signal_handler(signal, frame):
@@ -44,6 +45,24 @@ def encode_response(ready_socket, errorNum, errorType):
 	print(header + body + '\r\n\r\n')
 
 
+def check_POST(ready_socket):
+	data = clients[ready_socket]
+
+	header = data.split('\r\n\r\n')[0]
+	event = header.split('\r\n')[4]
+	eventName = event[16:]
+
+	payload = data.split('\r\n\r\n')[1]
+	dic = json.loads(payload)
+	repoName = dic['repository']['name']
+
+	branch = dic['repository']['default_branch']
+
+	print('========================')
+	print(eventName)
+	print(repoName)
+	print(branch)
+	print('========================')
 
 
 while True:
@@ -66,8 +85,10 @@ while True:
 					encode_response(ready_socket, 400, 'Bad Request')
 					print('Forcing shutdown')
 				else:
+					print(data)
 					request = data.decode("utf-8")
-					print(request)
+					# print(request)
 					# update partial http request
 					clients[ready_socket] = partial_request + request
-					encode_response(ready_socket, 204, 'No Content')
+					check_POST(ready_socket)
+					encode_response(ready_socket, 200, 'OK')
