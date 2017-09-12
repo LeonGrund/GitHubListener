@@ -3,6 +3,7 @@ import sys
 import os
 import signal
 import select
+import json
 
 serversocket = None
 def signal_handler(signal, frame):
@@ -45,10 +46,23 @@ def encode_response(ready_socket, errorNum, errorType):
 
 
 def check_POST(ready_socket):
-	print('inside check')
-	json = clients[ready_socket]
-	print(json)
-	print('FOUND push INFO')
+	data = clients[ready_socket]
+
+	header = data.split('\r\n\r\n')[0]
+	event = header.split('\r\n')[4]
+	eventName = event[16:]
+
+	payload = data.split('\r\n\r\n')[1]
+	dic = json.loads(payload)
+	repoName = dic['repository']['name']
+
+	branch = dic['repository']['default_branch']
+
+	print('========================')
+	print(eventName)
+	print(repoName)
+	print(branch)
+	print('========================')
 
 
 while True:
