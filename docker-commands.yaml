@@ -1,0 +1,31 @@
+# docker build [OPTIONS] PATH | URL | -
+build:
+  - docker
+  - build
+  - -t
+  - NAME
+  - REPO
+
+# docker service create [OPTIONS] IMAGE [COMMAND] [ARG...]
+# docker service update [OPTIONS] SERVICE
+# docker service rm SERVICE [SERVICE...]
+# docker service create -p 8080:80 --name test-run helloworld-exposed
+service:
+  - docker
+  - service
+  - create
+  - -p
+  - 4000:4000
+  - --name
+  - SERVICE_NAME
+  - IMAGE_NAME
+  - rm
+
+# Run app first time:
+# 1) build image
+# 2) create service
+
+# Auto update app:
+# 1) build image
+# 2) remove service
+# 2) create service

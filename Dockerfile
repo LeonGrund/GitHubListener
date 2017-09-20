@@ -1,11 +1,10 @@
 FROM elyase/staticpython
 COPY web_server.py /run/
-requirements.txt /run/
 
-RUN ['python web_server.py', '127.0.0.1', '8000']
+# RUN ['python web_server.py', '127.0.0.1', '8440']
 
-pip install --requirement /run/requirements.txt
+# pip install --requirement /run/requirements.txt
 
-EXPOSE 80:8080
+# EXPOSE 80
 
-CMD [ "python", "./web_server.py" ]
+CMD [ "python", "run/web_server.py" ]
