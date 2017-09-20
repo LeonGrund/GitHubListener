@@ -60,7 +60,7 @@ def read_POST(ready_socket):
 	dic = json.loads(payload)
 	repoName = dic['repository']['name']
 
-	branch = dic['repository']['default_branch']
+	branch = dic['ref'][11:]
 
 	print('========================')
 	print(eventName)
@@ -97,6 +97,7 @@ def check_yaml(ready_socket):
 	EVENT = clients[ready_socket]['event']
 	REPO = clients[ready_socket]['repo']
 	BRANCH = clients[ready_socket]['branch']
+
 	# check build stage
 	print(stage)
 
@@ -127,6 +128,10 @@ def check_yaml(ready_socket):
 	except ValueError as err: print(err)
 
 	SERVICE_NAME = (REPO + '_PRODUCTION') if BRANCH == 'master' else (REPO + '_TEST')		# app_name:production app_name:test
+	clients[ready_socket]['production_port'] = PORT_NUM
+	clients[ready_socket]['test_port'] = PORT_NUM[:3] + '1:' + PORT_NUM[:4]
+
+	PORT_NUM = PORT_NUM if BRANCH == 'master' else clients[ready_socket]['test_port']
 
 	# docker build PATH -t REPO
 	image_build = subprocess.run([DOCKER, BUILD, TAG, IMAGE_NAME, PATH], stderr=subprocess.PIPE)
