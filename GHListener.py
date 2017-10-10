@@ -90,7 +90,7 @@ def read_composefile(ready_socket):
 
 	# check for valid branch name
 
-def pull_repo(ready_socket):
+#def pull_repo(ready_socket):
 	
 
 def check_yaml(ready_socket):

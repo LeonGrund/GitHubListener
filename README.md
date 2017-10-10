@@ -19,8 +19,13 @@
 ##### -Create GitHub Webhook
 
 
+#### Use Raspberry Pi as Docker cluster
+##### download ngrok Linux ARM *link*
+##### follow instruction on website
+##### expose port 4000: ./ngrok http 4000
 
-
+#### Install Python Dependencies:
+##### sudo pip install pyyaml
 
 
 
