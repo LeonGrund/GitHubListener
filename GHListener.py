@@ -1,4 +1,4 @@
-﻿import socket
+import socket
 import sys
 import os
 import signal
@@ -134,7 +134,12 @@ def check_yaml(ready_socket):
 	clients[ready_socket]['test_port'] = PORT_NUM[:3] + '1:' + PORT_NUM[:4]
 
 	PORT_NUM = PORT_NUM if BRANCH == 'master' else clients[ready_socket]['test_port']
-
+        
+        #Get updates: pull remp
+	#i = subprocess.run(['cd', '../helloworld-docker-app'], stderr=subprocess.PIPE)
+	ii = subprocess.run(['git', 'pull'], stderr=subprocess.PIPE)
+	
+	
 	# docker build PATH -t REPO
 	image_build = subprocess.run([DOCKER, BUILD, TAG, IMAGE_NAME, PATH], stderr=subprocess.PIPE)
 	image_build_err = image_build.stderr
