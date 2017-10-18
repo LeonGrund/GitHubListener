@@ -135,6 +135,8 @@ def check_yaml(ready_socket):
 
 	PORT_NUM = PORT_NUM if BRANCH == 'master' else clients[ready_socket]['test_port']
 
+	subprocess.run(['cd', '../helloworld-docker-app'],['git', 'checkout', BRANCH], ['git', 'pull'], stderr=subprocess.PIPE)
+
 	# docker build PATH -t REPO
 	image_build = subprocess.run([DOCKER, BUILD, TAG, IMAGE_NAME, PATH], stderr=subprocess.PIPE)
 	image_build_err = image_build.stderr
