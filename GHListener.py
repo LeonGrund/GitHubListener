@@ -13,7 +13,7 @@ def signal_handler(signal, frame):
 	print('Ctrl-c -- exiting')
 	if serversocket is not None:
 		serversocket.close()
-		sys.exit(0)
+		sys.exit(1)
 
 if __name__ == "__main__":
 	if len(sys.argv) != 1:
