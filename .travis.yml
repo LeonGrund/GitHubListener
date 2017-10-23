@@ -6,7 +6,7 @@ python:
 
 install:
   - pip install yaml
-  - pip install json
+#  - pip install json
 
 script:
   - GHListener.py
