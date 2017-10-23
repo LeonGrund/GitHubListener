@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
         # create an INET, STREAMing socket
 	serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	
+
         # bind the socket to a public host, and a well−known port
 	serversocket.bind((hostname, port))
 
@@ -129,10 +129,10 @@ def check_yaml(ready_socket):
 
 	# pull git repo, find port
 	PORT_NUM = PORT_NUM if BRANCH == 'master' else clients[ready_socket]['test_port']
-	
+
 	git_checkout = subprocess.check_output(['git', 'checkout', BRANCH],cwd=PATH)
 	print('\n' + git_checkout.decode())
-	
+
 	git_pull = subprocess.check_output(['git', 'pull'],cwd=PATH)
 	print('\n' + git_pull.decode())
 
@@ -140,20 +140,20 @@ def check_yaml(ready_socket):
 	# docker build PATH -t REPO
 	image_build = subprocess.check_output([DOCKER, BUILD, TAG, IMAGE_NAME, PATH], stderr=subprocess.PIPE)
 	print('\n' + image_build.decode())
-	
-	
+
+
 	# docker service create --name NAME REPO
 	# first try remove service than create
 	service_rm = subprocess.check_output([DOCKER, SERVICE, REMOVE, SERVICE_NAME], stderr=subprocess.PIPE)
 	print('\n' + service_rm.decode())
-        
+
 	service_create = subprocess.check_output([DOCKER, SERVICE, CREATE, PORT, PORT_NUM, NAME, SERVICE_NAME, IMAGE_NAME], stderr=subprocess.PIPE)
 	print('\n' + service_create.decode())
-	
+
 	print("Clean Reg:")
 	# clean up: remove old builds/images
 	image_list = subprocess.check_output(['docker', 'images', '-f', 'dangling=true', '-q'], stderr=subprocess.PIPE)
-	
+
 	for i in (image_list.decode().split('\n')):
             if len(i) is not 0:
                 image_to_rm = str(i)
@@ -161,10 +161,10 @@ def check_yaml(ready_socket):
                     image_rm = subprocess.check_output(['docker', 'image', 'rmi', image_to_rm], stderr=subprocess.PIPE)
                 except:
                     print(image_to_rm + " cant be removed")
-	print("\nSUCCESSFULLY AUTO DEPLOY " + REPO + " AT " + PORT_NUM + "\n")
-	
-        
-        
+	print("\nSUCCESSFULLY AUTO DEPLOY " + REPO + " AT " + PORT_NUM[:4] + "\n")
+
+
+
 while True:
 
 		rw = [serversocket]
