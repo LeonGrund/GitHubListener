@@ -17,7 +17,9 @@ def signal_handler(signal, frame):
 
 if __name__ == "__main__":
 	if len(sys.argv) != 1:
-		print("No args needed")
+                run_test_script = subprocess.check_output(['python', 'testGHL.py'], stderr=subprocess.PIPE)
+                print(run_test_script.decode())
+		print("TEST FINISHED")
 		sys.exit(0)
 	else:
 		hostname = 'localhost'
@@ -45,7 +47,7 @@ def encode_response(ready_socket, errorNum, errorType):
 	ready_socket.send((header + body + '\r\n\r\n').encode())
 	ready_socket.close()
 	del clients[ready_socket]
-	print(header + body + '\r\n\r\n')
+	#print(header + body + '\r\n\r\n')
 
 
 # retruns event, repo, branch name
