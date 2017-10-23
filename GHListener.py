@@ -8,6 +8,7 @@ import yaml
 import subprocess
 
 serversocket = None
+
 def signal_handler(signal, frame):
 	print('Ctrl-c -- exiting')
 	if serversocket is not None:
@@ -28,8 +29,8 @@ if __name__ == "__main__":
 	print('registering signal -- done')
 
     # create an INET, STREAMing socket
-	serversocket = socket.socket(socket.AF_INET,
-                                 socket.SOCK_STREAM)
+	serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	
     # bind the socket to a public host, and a well−known port
 	serversocket.bind((hostname, port))
 
