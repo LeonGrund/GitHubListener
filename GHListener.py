@@ -90,7 +90,7 @@ def read_composefile(ready_socket):
 	# check for valid event, reop, and branch
 	if (EVENT == 'push'):
 		with open(yml_file, 'r') as stream:
-			composeYML = yaml.safe.load(stream)
+			composeYML = yaml.safe_load(stream)
 			# add clients docker-commands data
 			clients[ready_socket]['stage'] = composeYML
 
