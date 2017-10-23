@@ -90,7 +90,7 @@ def read_composefile(ready_socket):
 	# check for valid event, reop, and branch
 	if (EVENT == 'push'):
 		with open(yml_file, 'r') as stream:
-			composeYML = yaml.safe.load(stream)
+			composeYML = yaml.safe_load(stream)
 			# add clients docker-commands data
 			clients[ready_socket]['stage'] = composeYML
 
@@ -167,8 +167,9 @@ def check_yaml(ready_socket):
                 image_to_rm = str(i)
                 try:
                     image_rm = subprocess.check_output(['docker', 'image', 'rmi', image_to_rm], stderr=subprocess.PIPE)
-                except Exception as err:
-                    print(image_to_rm + " cant be removed: " + err )
+                except:
+                    print(image_to_rm + " cant be removed: ")
+                    pass
 	print("\nSUCCESSFULLY AUTO DEPLOY " + REPO + " AT " + PORT_NUM[:4] + "\n")
 
 
