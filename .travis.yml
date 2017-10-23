@@ -5,8 +5,8 @@ python:
   - "3.6"
 
 install:
-  - sudo pip install yaml
-#  - pip install json
+  - pip install pyyaml
+  - pip install simplejson
 
 script:
   - GHListener.py
