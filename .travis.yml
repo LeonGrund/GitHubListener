@@ -9,5 +9,4 @@ install:
   - pip install simplejson
 
 script:
-  - python GHListener.py
-  - python testGHL.py
+  - python GHListener.py 1
