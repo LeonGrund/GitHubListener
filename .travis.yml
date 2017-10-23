@@ -8,4 +8,6 @@ install:
   - pip install pyyaml
   - pip install simplejson
 
-script: python GHListener.py
+script:
+  - python GHListener.py
+  - python testGHL.py
