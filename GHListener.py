@@ -17,8 +17,8 @@ def signal_handler(signal, frame):
 
 if __name__ == "__main__":
 	if len(sys.argv) != 1:
-                run_test_script = subprocess.check_output(['python', 'testGHL.py'], stderr=subprocess.PIPE)
-                #print(run_test_script.decode())
+        run_test_script = subprocess.check_output(['python', 'testGHL.py'], stderr=subprocess.PIPE)
+        print(run_test_script.decode())
 		print("TEST FINISHED")
 		sys.exit(0)
 	else:
