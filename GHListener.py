@@ -1,4 +1,4 @@
-﻿import socket
+import socket
 import sys
 import os
 import signal
@@ -8,6 +8,7 @@ import yaml
 import subprocess
 
 serversocket = None
+
 def signal_handler(signal, frame):
 	print('Ctrl-c -- exiting')
 	if serversocket is not None:
@@ -27,10 +28,10 @@ if __name__ == "__main__":
 	signal.signal(signal.SIGINT, signal_handler)
 	print('registering signal -- done')
 
-    # create an INET, STREAMing socket
-	serversocket = socket.socket(socket.AF_INET,
-                                 socket.SOCK_STREAM)
-    # bind the socket to a public host, and a well−known port
+        # create an INET, STREAMing socket
+	serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	
+        # bind the socket to a public host, and a well−known port
 	serversocket.bind((hostname, port))
 
 	serversocket.listen(5)
@@ -86,13 +87,6 @@ def read_composefile(ready_socket):
 			# add clients docker-commands data
 			clients[ready_socket]['stage'] = composeYML
 
-	# check for valid reop name
-
-	# check for valid branch name
-
-#def pull_repo(ready_socket):
-
-
 def check_yaml(ready_socket):
 
 	stage = clients[ready_socket]['stage']
@@ -133,26 +127,44 @@ def check_yaml(ready_socket):
 	clients[ready_socket]['production_port'] = PORT_NUM
 	clients[ready_socket]['test_port'] = PORT_NUM[:3] + '1:' + PORT_NUM[:4]
 
+	# pull git repo, find port
 	PORT_NUM = PORT_NUM if BRANCH == 'master' else clients[ready_socket]['test_port']
+	
+	git_checkout = subprocess.check_output(['git', 'checkout', BRANCH],cwd=PATH)
+	print('\n' + git_checkout.decode())
+	
+	git_pull = subprocess.check_output(['git', 'pull'],cwd=PATH)
+	print('\n' + git_pull.decode())
 
-	subprocess.run(['cd', '../helloworld-docker-app'],['git', 'checkout', BRANCH], ['git', 'pull'], stderr=subprocess.PIPE)
 
 	# docker build PATH -t REPO
-	image_build = subprocess.run([DOCKER, BUILD, TAG, IMAGE_NAME, PATH], stderr=subprocess.PIPE)
-	image_build_err = image_build.stderr
-	if (len(image_build_err.decode("utf-8")) is 0): print('Built IMAGE ' + IMAGE_NAME + ' successfully\n')
-	else: print(image_build_err.decode("utf-8"))
-
+	image_build = subprocess.check_output([DOCKER, BUILD, TAG, IMAGE_NAME, PATH], stderr=subprocess.PIPE)
+	print('\n' + image_build.decode())
+	
+	
 	# docker service create --name NAME REPO
 	# first try remove service than create
-	subprocess.run([DOCKER, SERVICE, REMOVE, SERVICE_NAME], stderr=subprocess.PIPE)
-	service_create = subprocess.run([DOCKER, SERVICE, CREATE, PORT, PORT_NUM, NAME, SERVICE_NAME, IMAGE_NAME], stderr=subprocess.PIPE)
-	service_create_err = service_create.stderr
-	if (len(service_create_err.decode("utf-8")) is 0): print('Created SERVICE ' + SERVICE_NAME + ' successfully\n')
-	else: print(service_create_err.decode("utf-8"))
-
-
-
+	service_rm = subprocess.check_output([DOCKER, SERVICE, REMOVE, SERVICE_NAME], stderr=subprocess.PIPE)
+	print('\n' + service_rm.decode())
+        
+	service_create = subprocess.check_output([DOCKER, SERVICE, CREATE, PORT, PORT_NUM, NAME, SERVICE_NAME, IMAGE_NAME], stderr=subprocess.PIPE)
+	print('\n' + service_create.decode())
+	
+	print("Clean Reg:")
+	# clean up: remove old builds/images
+	image_list = subprocess.check_output(['docker', 'images', '-f', 'dangling=true', '-q'], stderr=subprocess.PIPE)
+	
+	for i in (image_list.decode().split('\n')):
+            if len(i) is not 0:
+                image_to_rm = str(i)
+                try:
+                    image_rm = subprocess.check_output(['docker', 'image', 'rmi', image_to_rm], stderr=subprocess.PIPE)
+                except:
+                    print(image_to_rm + " cant be removed")
+	print("\nSUCCESSFULLY AUTO DEPLOY " + REPO + " AT " + PORT_NUM + "\n")
+	
+        
+        
 while True:
 
 		rw = [serversocket]
