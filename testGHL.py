@@ -19,5 +19,7 @@ try:
     s.send(git_post)
     s.close
     print("Post sent")
+    sys.exit(0)
 except Exception as e:
     print("Run GHL, then run testGHL")
+    sys.exit(0)
