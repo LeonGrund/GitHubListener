@@ -180,6 +180,7 @@ while True:
 			else:
 				partial_request = clients[ready_socket]
 				data = ready_socket.recv(16384)
+				print(data)
 
 				if len(data) == 0:
 					# send response to GitHub
