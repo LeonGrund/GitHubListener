@@ -1,6 +1,5 @@
 import socket
 import sys
-import os
 import signal
 import select
 import json
@@ -16,11 +15,16 @@ def signal_handler(signal, frame):
 		sys.exit(1)
 
 if __name__ == "__main__":
-	if len(sys.argv) != 1:
+	# run test
+	if len(sys.argv) == 1:
 		run_test_script = subprocess.check_output(['python', 'testGHL.py'], stderr=subprocess.PIPE)
 		print(run_test_script.decode())
 		print("TEST FINISHED")
 		sys.exit(0)
+
+	if len(sys.argv) != 1:
+		print("UNTRUSTED INPUT, EXIT")
+		sys.exit(1)
 	else:
 		hostname = 'localhost'
 		port = 4000
