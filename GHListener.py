@@ -166,8 +166,8 @@ def check_yaml(ready_socket):
                 image_to_rm = str(i)
                 try:
                     image_rm = subprocess.check_output(['docker', 'image', 'rmi', image_to_rm], stderr=subprocess.PIPE)
-                except:
-                    print(image_to_rm + " cant be removed")
+                except Exception as err:
+                    print(image_to_rm + " cant be removed: " + err )
 	print("\nSUCCESSFULLY AUTO DEPLOY " + REPO + " AT " + PORT_NUM[:4] + "\n")
 
 
