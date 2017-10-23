@@ -13,9 +13,11 @@ print("\n***D O C K E R  T E S T  A P P  S T A R T E D***\n")
 #ip = '0.0.0.0'
 ip = 'localhost'
 port = 4000
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((ip, port))
-s.send(git_post)
-s.close
-print("Post sent")
+try:
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((ip, port))
+    s.send(git_post)
+    s.close
+    print("Post sent")
+except Exception as e:
+    print("Run GHL, then run testGHL")

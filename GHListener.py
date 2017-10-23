@@ -150,6 +150,7 @@ def check_yaml(ready_socket):
 	service_create = subprocess.check_output([DOCKER, SERVICE, CREATE, PORT, PORT_NUM, NAME, SERVICE_NAME, IMAGE_NAME], stderr=subprocess.PIPE)
 	print('\n' + service_create.decode())
 
+
 	print("Clean Reg:")
 	# clean up: remove old builds/images
 	image_list = subprocess.check_output(['docker', 'images', '-f', 'dangling=true', '-q'], stderr=subprocess.PIPE)
@@ -175,12 +176,11 @@ while True:
 			if ready_socket == serversocket:
 				(clientsocket, address) = serversocket.accept()
 				clients[clientsocket] = ''
-				print("serversocket accept!")
+				print("\nserversocket accept!")
 
 			else:
 				partial_request = clients[ready_socket]
 				data = ready_socket.recv(16384)
-				print(data)
 
 				if len(data) == 0:
 					# send response to GitHub
@@ -199,6 +199,13 @@ while True:
 
 					# validate yaml file
 					# repo: GitHub evernt that was pushed, repo and branch name
-					read_composefile(ready_socket)
-					check_yaml(ready_socket)
+					try:
+						read_composefile(ready_socket)
+					except Exception as err: print("READ YAML FILE ERROR\n")
+
+					try:
+						check_yaml(ready_socket)
+					except Exception as err:
+						print('Subprocess Error: Check Commands\n')
+
 					encode_response(ready_socket, 200, 'OK')
