@@ -15,16 +15,17 @@ def signal_handler(signal, frame):
 		sys.exit(1)
 
 if __name__ == "__main__":
+
+	if len(sys.argv) >= 2 and sys.argv[1] != '1':
+		print("UNTRUSTED INPUT, EXIT")
+		sys.exit(1)
+
 	# run test
-	if len(sys.argv[1]) == 1:
+	if len(sys.argv) >= 2 and sys.argv[1] == '1':
 		run_test_script = subprocess.check_output(['python', 'testGHL.py'], stderr=subprocess.PIPE)
 		print(run_test_script.decode())
 		print("TEST FINISHED")
 		sys.exit(0)
-
-	if len(sys.argv) != 1:
-		print("UNTRUSTED INPUT, EXIT")
-		sys.exit(1)
 	else:
 		hostname = 'localhost'
 		port = 4000
@@ -89,7 +90,7 @@ def read_composefile(ready_socket):
 	# check for valid event, reop, and branch
 	if (EVENT == 'push'):
 		with open(yml_file, 'r') as stream:
-			composeYML = yaml.load(stream)
+			composeYML = yaml.safe.load(stream)
 			# add clients docker-commands data
 			clients[ready_socket]['stage'] = composeYML
 
