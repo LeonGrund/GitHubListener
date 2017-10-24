@@ -27,8 +27,32 @@
 ##### docker rmi -f $(docker images -q)
 
 
+## Templates:
+* Needed for every git repository
+* Note: port ```4000:4000``` is used by ```GitHubListener.py```
 
+_docker-commands.yaml_  
 
+~~~
+build:
+  - docker
+  - build
+  - -t
+  - NAME
+  - REPO
+
+service:
+  - docker
+  - service
+  - create
+  - -p
+  - <port>:<port>
+  - --name
+  - SERVICE_NAME
+  - IMAGE_NAME
+  - rm
+
+~~~
 
 
 
