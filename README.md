@@ -4,10 +4,8 @@
 
 # **GitHubListener**
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 3ba23e4c6325202c1d7d18b70266488bc5b10242
+
 ![Topology](/GHL-topology.png)
 
 ### Dependencies:
