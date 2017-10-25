@@ -9,8 +9,8 @@
 ![Topology](/GHL-topology.png)
 
 ### Dependencies:
-#### -Docker
-#### -ngrok
+* #### Docker
+* #### ngrok
 
 
 
@@ -34,7 +34,7 @@
 
 ## Templates:
 * Needed for every git repository
-* Note: port ```4000:4000``` is used by ```GitHubListener.py```
+* Note: port ```4000:4000``` is utilized by ```GitHubListener.py```
 
 _docker-commands.yaml_  
 
@@ -60,6 +60,16 @@ service:
 ~~~
 
 
+_Dockerfile_
+
+~~~
+FROM <docker_image>
+
+COPY <path_container>
+
+CMD [ "<fist_arg>", "<second_arg>" ]
+
+~~~
 
 
 
