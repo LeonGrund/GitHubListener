@@ -65,7 +65,7 @@ _Dockerfile_
 ~~~
 FROM <docker_image>
 
-COPY <path_container>
+COPY <file> <path>
 
 CMD [ "<fist_arg>", "<second_arg>" ]
 
