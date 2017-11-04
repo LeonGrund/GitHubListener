@@ -35,7 +35,7 @@
 * Example: ```docker service ls```
   * Production: localhost:5000
   * Test: localhost:5001
- ![Docker images](png/GHL-docker_service_ls.png)
+![Docker images](png/GHL-docker_service_ls.png)
 
 ## Fork GitHubListener repository
 * Run the following commands at local directory where all your other Git repositories are located:
