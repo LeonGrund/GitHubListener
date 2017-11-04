@@ -22,16 +22,16 @@
 * #### Test GitHubListener
 
 ## Initiate Docker Swarm
-* Check if Docker is installed correctly by running
+* Check if Docker was installed correctly, run the following command in console:
 ```shell
 docker images
 ```
 ![Docker images](/GHL-docker_images.png)
 
-* Initiate Docker Swarm with the following commands:
-~~~
-...
-~~~
+* Initiate Docker Swarm:
+```shell
+docker swarm init
+```
 
 ## Fork GitHubListener repository
 * Run the following commands at local directory where all your other Git repositories are located:
