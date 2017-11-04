@@ -4,27 +4,68 @@
 
 # **GitHubListener**
 
-
-
 ![Topology](/GHL-topology.png)
 
 ### Dependencies:
 * #### Docker
 * #### ngrok
 
+### Setup:
+* #### [Install Docker](https://www.docker.com/get-docker)
+* #### [Install ngrok](https://ngrok.com/download)
+* #### Initiate Docker Swarm
+* #### Fork **this** repository
+* #### Fork [helloworld-docker-app](LINK) repository
+* #### Run ngrok to expose localhost to URL
+* #### Create GitHub webhook
+* #### Run GitHubListener
+* #### Test GitHubListener
+
+## Initiate Docker Swarm
+* Check if Docker is installed correctly by running '''Docker images''' in the console
+~~~
+EXAMPLE OUTPUT
+~~~
+* Initiate Docker Swarm with the following commands:
+~~~
+...
+~~~
+
+## Fork GitHubListener repository
+* Run the following commands at local directory where all your other Git repositories are located:
+~~~
+...
+~~~
+
+## Create GitHub Webhook
+* Webhooks send a POST request to a specified URL every time an [Event](LINK) happens
+* Navigate to your repositories on GitHunb and go to **helloworld-docker-app**
+* Do the following:
+~~~
+Settings > Webhook > Create
+~~~
+* Use the URL ngrok generated:
+
+~~~
+...
+~~~
+
+## Run GitHubListener
+* Run '''GHListener.py''' in console:
+~~~
+python GHListener.py
+~~~
+* The following output should be printed in console:
+~~~
+...
+~~~
 
 
 
-#### Dowload and install:
-##### [Docker](https://www.docker.com/get-docker)
-##### [ngrok](https://ngrok.com/download)
 
-#### Setup:
-##### -Initiate Docker Swarm
-##### -Fork this repository
-##### -ngrok expose localhost
-##### -start GitHubListener
-##### -Create GitHub Webhook
+
+
+
 
 
 
@@ -75,14 +116,14 @@ CMD [ "<fist_arg>", "<second_arg>" ]
 
 
 #### Create a public HTTPS URL for **GitHubListener** running locally connected to port 4000:
-Open your command line and enter.
+Open your console and enter.
 
 '''
 ngrok http 4000*
 '''
 
 #### Start GitHubListener
-Open command line at GitHubListener.py directory and enter:
+Open console at GitHubListener.py directory and enter:
 
 '''
 python GHListener.py
