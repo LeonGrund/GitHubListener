@@ -35,6 +35,7 @@
 * Example: ```docker service ls```
   * Production: localhost:5000
   * Test: localhost:5001
+
 ![Docker images](png/GHL-docker_service_ls.png)
 
 ## Fork GitHubListener repository
