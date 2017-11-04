@@ -35,7 +35,6 @@ docker images
 ```shell
 docker swarm init
 ```
-&nbsp;
 
 * Now, you can host Docker Services: ```docker service```
 * Note: **GitHubListener** will automatically create and update two services for every registered application, test and production environment
