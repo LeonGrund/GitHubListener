@@ -38,10 +38,7 @@ docker swarm init
 
 * Now, you can host Docker Services: ```docker service```
 * Note: **GitHubListener** will automatically create and update two services for every registered application, test and production environment
-* Example: _helloworld-docker-app_
-```shell
-docker service ls
-```
+* Example: ```docker service ls```
  ![Docker images](png/GHL-docker_service_ls.png)
 
 ## Fork GitHubListener repository
