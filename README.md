@@ -22,7 +22,10 @@
 * #### Test GitHubListener
 
 ## Initiate Docker Swarm
-* Check if Docker is installed correctly by running '''Docker images''' in the console
+* Check if Docker is installed correctly by running
+'''bash
+Docker images
+''' 
 ~~~
 EXAMPLE OUTPUT
 ~~~
