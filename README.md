@@ -5,7 +5,7 @@
 # **GitHubListener**
 &nbsp;
 
-![Topology](/GHL-topology.png)
+![Topology](png/GHL-topology.png)
 
 ### Dependencies:
 * #### Docker
@@ -29,13 +29,21 @@
 ```shell
 docker images
 ```
-![Docker images](/GHL-docker_images.png)
+![Docker images](png/GHL-docker_images.png)
 
 * Initiate Docker Swarm:
 ```shell
 docker swarm init
 ```
 &nbsp;
+
+* Now, you can host Docker Services: ```docker service```
+* Note: **GitHubListener** will automatically create and update two services for every registered application, test and production environment
+* Example: _helloworld-docker-app_
+```shell
+docker service ls
+```
+ ![Docker images](png/GHL-docker_service_ls.png)
 
 ## Fork GitHubListener repository
 * Run the following commands at local directory where all your other Git repositories are located:
