@@ -151,8 +151,11 @@ def check_yaml(ready_socket):
 
 	# docker service create --name NAME REPO
 	# first try remove service than create
-	service_rm = subprocess.check_output([DOCKER, SERVICE, REMOVE, SERVICE_NAME], stderr=subprocess.PIPE)
-	print('\n' + service_rm.decode())
+	try:
+		service_rm = subprocess.check_output([DOCKER, SERVICE, REMOVE, SERVICE_NAME], stderr=subprocess.PIPE)
+		print('\n' + service_rm.decode())
+	except:
+		print("\nNo Service to remove")
 
 	service_create = subprocess.check_output([DOCKER, SERVICE, CREATE, PORT, PORT_NUM, NAME, SERVICE_NAME, IMAGE_NAME], stderr=subprocess.PIPE)
 	print('\n' + service_create.decode())

@@ -33,8 +33,8 @@
 * Now, you can host Docker Services: ```docker service```
 * Note: **GitHubListener** will automatically create and update two services for every registered application, test and production environment
 * Example: ```docker service ls```
-  * Production Env.: 127.0.0.1:5000
-  * Test Env.: 127.0.0.1:5001
+  * Production: localhost:5000
+  * Test: localhost:5001
  ![Docker images](png/GHL-docker_service_ls.png)
 
 ## Fork GitHubListener repository
@@ -68,7 +68,21 @@ python GHListener.py
 
 
 
-
+## Useful Docker Commands:
+* Image:
+```
+docker images
+```
+* Container:
+```
+docker container stop <container1_id> <container2_id> <...>
+docker container rm <container1_id> <container2_id> <...>
+```
+* Service:
+```
+docker service ls
+docker service rm <service1_id> <service2_id> <...>
+```
 
 
 
