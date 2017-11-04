@@ -3,12 +3,14 @@
 
 
 # **GitHubListener**
+&nbsp;
 
 ![Topology](/GHL-topology.png)
 
 ### Dependencies:
 * #### Docker
 * #### ngrok
+&nbsp;
 
 ### Setup:
 * #### [Install Docker](https://www.docker.com/get-docker)
@@ -20,6 +22,7 @@
 * #### Create GitHub webhook
 * #### Run GitHubListener
 * #### Test GitHubListener
+&nbsp;
 
 ## Initiate Docker Swarm
 * Check if Docker was installed correctly, run the following command in console:
@@ -32,6 +35,7 @@ docker images
 ```shell
 docker swarm init
 ```
+&nbsp;
 
 ## Fork GitHubListener repository
 * Run the following commands at local directory where all your other Git repositories are located:
