@@ -25,16 +25,10 @@
 &nbsp;
 
 ## Initiate Docker Swarm
-* Check if Docker was installed correctly, run the following command in console:
-```shell
-docker images
-```
+* Check if Docker was installed correctly, run the following command in console: ```docker images```
 ![Docker images](png/GHL-docker_images.png)
 
-* Initiate Docker Swarm:
-```shell
-docker swarm init
-```
+* Initiate Docker Swarm: ```docker swarm init```
 
 * Now, you can host Docker Services: ```docker service```
 * Note: **GitHubListener** will automatically create and update two services for every registered application, test and production environment
