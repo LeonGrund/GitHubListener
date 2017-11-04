@@ -23,8 +23,8 @@
 
 ## Initiate Docker Swarm
 * Check if Docker is installed correctly by running
-```bash
-Docker images
+```shell
+docker images
 ```
 ![Docker images](/GHL-docker_images.png)
 
