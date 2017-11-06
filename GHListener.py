@@ -37,7 +37,6 @@ if __name__ == "__main__":
 
         # create an INET, STREAMing socket
 	serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
         # bind the socket to a public host, and a well−known port
 	serversocket.bind((hostname, port))
 
@@ -130,7 +129,9 @@ def check_yaml(ready_socket):
 			raise ValueError('Invalid Syntax docker-commands.yml SERVICE')
 	except ValueError as err: print(err)
 
-	SERVICE_NAME = (REPO + '_PRODUCTION') if BRANCH == 'master' else (REPO + '_TEST')		# app_name:production app_name:test
+	SERVICE_NAME = (REPO + '_PRODUCTION') if BRANCH == 'master' else (REPO + '_TEST')		# app_name:production OR app_name:test
+	IMAGE_NAME = (IMAGE_NAME + '-prod') if BRANCH == 'master' else (IMAGE_NAME + '-test')
+
 	clients[ready_socket]['production_port'] = PORT_NUM
 	clients[ready_socket]['test_port'] = PORT_NUM[:3] + '1:' + PORT_NUM[:4]
 
