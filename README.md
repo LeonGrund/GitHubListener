@@ -16,8 +16,8 @@
 * #### [Install Docker](https://www.docker.com/get-docker)
 * #### [Install ngrok](https://ngrok.com/download)
 * #### Initiate Docker Swarm
-* #### Fork **this** repository
-* #### Fork [helloworld-docker-app](LINK) repository
+* #### Clone **this** repository
+* #### Clone [helloworld-docker-app](LINK) repository
 * #### Run ngrok to expose localhost to URL
 * #### Create GitHub webhook
 * #### Run GitHubListener
@@ -38,7 +38,7 @@
 
 ![Docker images](png/GHL-docker_service_ls.png)
 
-## Fork GitHubListener repository
+## Clone GitHubListener repository
 * Run the following commands at local directory where all your other Git repositories are located:
 ~~~
 ...
