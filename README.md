@@ -71,12 +71,20 @@ Settings > Webhook > Add webhook
 &nbsp;
 
 ## Run GitHubListener
-* Run '''GHListener.py''' in console:
+* Run ```GHListener.py``` in console:
 ~~~
 python GHListener.py
 ~~~
 * The following output should be printed in console:
+
 ![GitHubListener](png/GHL-start.png)
+&nbsp;
+
+## Test GitHubListener
+* Run ```testGHL.py``` in console:
+~~~
+python testGHL.py
+~~~
 &nbsp;
 
 ## Useful Docker Commands:
@@ -135,7 +143,7 @@ CMD [ "<fist_arg>", "<second_arg>" ]
 ~~~
 * Example) ```helloworld-docker-app Dockerfile```
   * Build images with python
-  * Copy ```test.py``` in image
+  * Copy ```test.py``` into image
   * Run ```test.py``` when images is run
 ~~~
 FROM hypriot/rpi-python
