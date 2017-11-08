@@ -61,7 +61,7 @@ ngrok http 4000
 
 ## Create GitHub Webhook
 * Webhooks send a POST request to a specified URL every time an push event happens
-* Navigate to your repositories on GitHunb and go to **helloworld-docker-app**
+* Navigate to your repositories on GitHunb and go to [**helloworld-docker-app**](https://github.com/LeonGrund/helloworld-docker-app)
 * Do the following:
 ~~~
 Settings > Webhook > Add webhook
