@@ -21,7 +21,7 @@
 * #### Run ngrok to expose localhost to URL
 * #### Create GitHub webhook
 * #### Run GitHubListener
-* #### [Test GitHubListener][#test]
+* #### [Test GitHubListener](#test)
 &nbsp;
 
 #init-swarm
