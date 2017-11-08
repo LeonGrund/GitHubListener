@@ -15,16 +15,17 @@
 ### Setup:
 * #### [Install Docker](https://www.docker.com/get-docker)
 * #### [Install ngrok](https://ngrok.com/download)
-* #### [Initiate Docker Swarm](#init-swarm)
+* #### Initiate Docker Swarm
 * #### Clone **this** repository
 * #### Clone [helloworld-docker-app](https://github.com/LeonGrund/helloworld-docker-app) repository
 * #### Run ngrok to expose localhost to URL
 * #### Create GitHub webhook
 * #### Run GitHubListener
-* #### [Test GitHubListener](#test)
+* #### Test GitHubListener
+* #### Templates
 &nbsp;
 
-#init-swarm
+
 ## Initiate Docker Swarm
 * Check if Docker was installed correctly, run the following command in console: ```docker images```
 ![Docker images](png/GHL-docker_images.png)
@@ -81,7 +82,6 @@ python GHListener.py
 ![GitHubListener](png/GHL-start.png)
 &nbsp;
 
-#test
 ## Test GitHubListener
 * Run ```testGHL.py``` in console:
 ~~~
