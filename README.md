@@ -146,8 +146,7 @@ COPY <file> <path>
 
 CMD [ "<fist_arg>", "<second_arg>" ]
 ~~~
-* Example: ```helloworld-docker-app```
-_Dockerfile_
+* Example: ```helloworld-docker-app``` Dockerfile
   * Build images with python
   * Copy ```test.py``` into image
   * Run ```test.py``` when images is run
