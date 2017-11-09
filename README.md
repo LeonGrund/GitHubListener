@@ -73,6 +73,9 @@ Settings > Webhook > Add webhook
 &nbsp;
 
 ## Run GitHubListener
+* Install python packages:
+  * ```pip install pyyaml```
+  * ```pip install simplejson```
 * Run ```GHListener.py``` in console:
 ~~~
 python GHListener.py
